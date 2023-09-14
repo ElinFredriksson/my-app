@@ -10,6 +10,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import AddProductPage from './pages/AddProduct';
 import ProductDetail from './pages/ProductDetail';
+import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   
   return (
     <>
+      <ShoppingCartProvider>
     <Router>
       <Navbar />
       <HeroImage/>
@@ -30,6 +32,7 @@ function App() {
 
       </Routes>
       </Router>
+      </ShoppingCartProvider>
     </>
   );
 }

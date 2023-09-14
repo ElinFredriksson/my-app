@@ -34,6 +34,7 @@ const Home = () => {
         <ProductCard
           key={index.toString()}
           product={product}
+          
         />
       ))}
     </div>

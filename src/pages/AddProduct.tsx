@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import db from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid'; // Import the uuidv4 function
 import { Product } from '../Types/Product';
-
 
 const AddProductPage: React.FC = () => {
   const initialProduct = {
@@ -25,14 +25,22 @@ const AddProductPage: React.FC = () => {
     if (newProduct.name && newProduct.price && newProduct.imgURL) {
       const payload = { 
         ...newProduct,
-        price: Number(newProduct.price), };
+        price: Number(newProduct.price),
+      };
 
       try {
-        // Add the new product to Firestore
-        const docRef = await addDoc(collection(db, 'Products'), payload);
+        // Generate a random ID
+        const id = uuidv4();
+
+        // Create a reference to the document
+        const docRef = doc(db, 'Products', id);
+
+        // Add data to Firestore
+        await setDoc(docRef, { ...payload, id });
 
         // Add new product to local state
-        setProducts([...products, { ...newProduct, id: docRef.id }]);
+        setProducts([...products, { ...payload, id }]);
+
         // Reset form
         setNewProduct(initialProduct);
       } catch (error) {

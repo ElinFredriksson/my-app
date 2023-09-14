@@ -1,20 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useShoppingCart } from '../context/ShoppingCartContext';
 import { Product } from '../Types/Product';
-
 
 
 interface ProductCardProps {
   product: Product
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  product
-}) => {
-  // Check if price is a valid number before using toFixed
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { increaseItemQuantity, getItemQuantity } = useShoppingCart();
   const formattedPrice = typeof product.price === 'number' ? product.price.toFixed(2) : product.price;
 
-  console.log(`Rendering ProductCard ${product.imgURL}`); 
+  const handleAddToCart = () => {
+   increaseItemQuantity(product.id);
+  }
 
   return (
     <div className="product-card">
@@ -24,16 +24,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="product-description">{product.description}</p>
         <p className="product-price">${formattedPrice}</p>
         <div className="button-container">
-        <Link to={`/productdetail/${product.id}`} className="view-details-button">
+          <Link to={`/productdetail/${product.id}`} className="view-details-button">
             <button>Details</button>
-        </Link>
-
-          <button className="add-to-cart-button">Add to Cart</button>
+          </Link>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
         </div>
+        <p>Quantity in Cart: {getItemQuantity(product.id)}</p>
       </div>
     </div>
   );
 };
 
 export default ProductCard;
-
