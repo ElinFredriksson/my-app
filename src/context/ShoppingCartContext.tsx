@@ -1,18 +1,21 @@
 // ShoppingCartContext.tsx
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { CartType } from '../Types/CartItem';
+import { CartType } from '../types/CartItem';
 import { getCartFromLocalStorage, saveCartToLocalStorage } from '../helpers/localStorage';
 
 type ShoppingCartContextType = {
     cartItems: CartType[];
+    isOpen: boolean; 
     openCart: () => void;
     closeCart: () => void;
     getItemQuantity: (id: string) => number;
+    addToCart: (product: Product) => void; 
     increaseItemQuantity: (id: string) => void;
     decreaseItemQuantity: (id: string) => void;
     removeFromCart: (id: string) => void;
 };
+
 
 const ShoppingCartContext = createContext<ShoppingCartContextType | undefined>(undefined);
 
@@ -44,12 +47,49 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
         return cartItems.find(item => item.id === id)?.quantity || 0;
     };
 
+    const addToCart = (product: Product) => {
+        const productIndex = cartItems.findIndex(item => item.id === product.id);
+        if (productIndex !== -1) {
+            setCartItems(prev => {
+                const newCart = [...prev];
+                newCart[productIndex] = { ...newCart[productIndex], quantity: newCart[productIndex].quantity + 1 };
+                return newCart;
+            });
+        } else {
+            setCartItems(prev => [...prev, { ...product, quantity: 1 }]);
+        }
+    };
+
+    const _modifyItemQuantity = (prevState: CartType[], index: number, modifier: number) => {
+        const newCart = [...prevState];
+        newCart[index] = { ...newCart[index], quantity: newCart[index].quantity + modifier };
+        return newCart;
+    }
+
     const increaseItemQuantity = (id: string) => {
-        setCartItems(prev => prev.map(item => item.id === id ? { ...item, quantity: item.quantity + 1 } : item));
+        const productIndex = cartItems.findIndex(item => item.id === id);
+        setCartItems(prev => {
+          if (productIndex !== -1) {
+              return _modifyItemQuantity(prev, productIndex, 1);
+          }
+          return prev
+        });
+
+
     };
 
     const decreaseItemQuantity = (id: string) => {
-        setCartItems(prev => prev.map(item => item.id === id ? { ...item, quantity: item.quantity - 1 } : item));
+        const productIndex = cartItems.findIndex(item => item.id === id);
+        setCartItems(prev => {
+            if (productIndex !== -1) {
+                const newCart = _modifyItemQuantity(prev, productIndex, -1);
+                if (newCart[productIndex].quantity === 0) {
+                    return newCart.filter(item => item.id !== id);
+                }
+                return newCart;
+            }
+            return prev;
+        });
     };
 
     const removeFromCart = (id: string) => {
@@ -63,8 +103,10 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     return (
         <ShoppingCartContext.Provider value={{
             cartItems,
+            isOpen,
             openCart,
             closeCart,
+            addToCart,
             getItemQuantity,
             increaseItemQuantity,
             decreaseItemQuantity,

@@ -1,4 +1,4 @@
-import { CartType } from "../Types/CartItem";
+import { CartType } from "../types/CartItem";
 
 const CART_STORAGE_KEY = '@LS_CART';
 

@@ -1,18 +1,16 @@
 
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import { CartType } from '../types/CartItem';
 // import { useProducts } from '../Hooks/useProductData';
 // import { CartItem } from '../Types/CartItem';
-import { Product } from '../Types/Product';
 
 interface CartProductProps {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
+    cartItem: CartType;
     
   }
 
-const CartProduct: React.FC<CartProductProps> = ({ id, name, price, quantity }) => {
+const CartProduct: React.FC<CartProductProps> = ({cartItem}) => {
+  const { id, name, price, quantity } = cartItem;
   const { cartItems, openCart, closeCart, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeFromCart } = useShoppingCart();
 
   return (

@@ -3,13 +3,15 @@ import { NavLink } from 'react-router-dom';
 // import { FaShoppingCart } from 'react-icons/fa'
 import { Button } from 'react-bootstrap';
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import ShoppingCart from './ShoppingCart';
 
 
 
 
-interface NavbarProps {
-  // You can define any props you need for your Navbar component here
-}
+
+
+
+interface NavbarProps { }
 
 const Navbar: React.FC<NavbarProps> = () => {
   const { openCart, cartItems } = useShoppingCart();
@@ -32,19 +34,14 @@ const Navbar: React.FC<NavbarProps> = () => {
             About
           </a>
         </li>
-        {/* <li className="nav-item dropdown custom-dropdown-li">
+        <li className="nav-item dropdown custom-dropdown-li ">
               <span
                 className="nav-link"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded='false'              
                 >
-                <FaShoppingCart className='shopping-cart'/>
-              </span>
-              
-            </li> */}
-      </ul>
-      </div>
+                
       <Button
             onClick={openCart}
             
@@ -73,11 +70,21 @@ const Navbar: React.FC<NavbarProps> = () => {
               }}
             >
               {cartItems.length}
+              
               </div>
+      <ShoppingCart
+          />
           </Button>
+              
+              </span>
+            </li>
+      </ul>
+      </div>
     </nav>
   );
 };
+
+
 
 
 export default Navbar;

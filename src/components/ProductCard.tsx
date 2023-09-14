@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useShoppingCart } from '../context/ShoppingCartContext';
-import { Product } from '../Types/Product';
 
 
 interface ProductCardProps {
@@ -9,11 +8,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { increaseItemQuantity, getItemQuantity } = useShoppingCart();
+  const { addToCart, getItemQuantity } = useShoppingCart();
   const formattedPrice = typeof product.price === 'number' ? product.price.toFixed(2) : product.price;
 
   const handleAddToCart = () => {
-   increaseItemQuantity(product.id);
+   addToCart(product);
+   
   }
 
   return (

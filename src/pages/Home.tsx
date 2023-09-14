@@ -6,9 +6,6 @@ import ProductCard from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
 
-import { Product } from '../Types/Product';
-
-
 
 const Home = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -17,7 +14,7 @@ const Home = () => {
     const unsubscribe = onSnapshot(collection(db, "Products"), (snapshot) => {
       const productData: Product[] = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => {
         const data = doc.data();
-        console.log("DATA",data);
+        // console.log("DATA",data);
         return data as Product;
       });
       setProducts(productData);
@@ -25,7 +22,6 @@ const Home = () => {
 
     return () => unsubscribe(); // Unsubscribe from the listener when the component is unmounting
   }, []);
-  console.log(products);
 
   return (
     <div className="App">

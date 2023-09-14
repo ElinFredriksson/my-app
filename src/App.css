@@ -84,8 +84,19 @@
   order: 1;
 }
 
+/* Ge modalen ett högt z-index värde */
+/* .modal {
+  z-index: 2000; /* Använd ett högre värde om det behövs */
+/* } */ 
+
+/* Ge modalens bakgrund (overlay) ett högre z-index värde */
+.modal-backdrop {
+  z-index: 1049; /* Ett steg under modalen */
+}
+
 .custom-dropdown-li {
   position: relative;
+  z-index: 1050;
 }
 .custom-dropdown-li .dropdown-menu {
   left: auto !important;

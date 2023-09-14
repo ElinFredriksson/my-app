@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Product } from '../Types/Product';
 import { useProducts } from '../Hooks/useProductData';
 
 const ProductDetail: React.FC = () => {
