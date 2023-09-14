@@ -1,6 +1,5 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import HeroImage from './components/Hero';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 

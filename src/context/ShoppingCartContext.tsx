@@ -1,5 +1,3 @@
-
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getCartFromLocalStorage } from '../helpers/localStorage';
 
