@@ -25,9 +25,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="product-price">${formattedPrice}</p>
         <div className="button-container">
           <Link to={`/productdetail/${product.id}`} className="view-details-button">
-            <button>Details</button>
+            <button className="btn btn-primary me-2">Details</button>
           </Link>
-          <button className="add-to-cart-button" onClick={handleAddToCart}>Add to Cart</button>
+          <button className="btn btn-success" onClick={handleAddToCart}>Add to Cart</button>
         </div>
         <p>Quantity in Cart: {getItemQuantity(product.id)}</p>
       </div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useProducts } from '../Hooks/useProductData';
+import Section from '../components/Section';
+
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,12 +25,21 @@ const ProductDetail: React.FC = () => {
   }
 
   return (
-    <div className="product-detail">
+    <>
+    <Section page="Products Description" description="Read more here about your selected product"/>
+    <div className="product-details-container">
+      <div className='text-container-details'>
       <h2>{product.name}</h2>
+      <div className='description-container-details'>
       <p>{product.description}</p>
-      <p>Price: ${product.price.toFixed(2)} SEK</p>
+      </div>
+      <p className='price-details'>Price: ${product.price.toFixed(2)} SEK</p>
+      </div>
+      <div className='img-container-details'>
       <img src={product.imgURL} alt={product.name} />
+      </div>
     </div>
+    </>
   );
 };
 

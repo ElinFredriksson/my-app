@@ -1,8 +1,8 @@
-// ShoppingCartContext.tsx
+
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { CartType } from '../types/CartItem';
-import { getCartFromLocalStorage, saveCartToLocalStorage } from '../helpers/localStorage';
+import { getCartFromLocalStorage } from '../helpers/localStorage';
+
 
 type ShoppingCartContextType = {
     cartItems: CartType[];
@@ -95,6 +95,8 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({ chil
     const removeFromCart = (id: string) => {
         setCartItems(prev => prev.filter(item => item.id !== id));
     };
+
+
 
     useEffect(() => {
         loadCartFromLocalStorage();

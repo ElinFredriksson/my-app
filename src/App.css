@@ -84,6 +84,32 @@
   order: 1;
 }
 
+.shoppingcart-div{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-top: 1rem;
+  width: 22rem;
+  color: #282c34;
+}
+.shoppingcart-heading{
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  text-decoration: underline;
+
+}
+
+.Button:hover {
+  background-color: black;
+  opacity: 1!important; 
+}
+
+
+/* .btn-outline-dark {
+   --bs-btn-disabled-bg: darkslategray!important;
+} */
+
 /* Ge modalen ett högt z-index värde */
 /* .modal {
   z-index: 2000; /* Använd ett högre värde om det behövs */
@@ -137,6 +163,24 @@
   margin-top: 10px;
 }
 
+.smallHero {
+  text-align: center;
+  /* font-size: 3rem; */
+  margin: 2rem;
+}
+
+.smallHero p {
+  font-size: 1.5rem;
+  font-style: oblique;
+  margin-top: 10px;
+}
+
+.smallHero h1 {
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
 /* ProductCard.css */
 
 .product-card {
@@ -158,7 +202,7 @@
 
 .product-image {
   width: 100%;
-  height: auto;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -221,3 +265,46 @@
     grid-template-columns: 1fr; 
   }
 }
+
+/* ProductPage.css */
+
+.product-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1224px;
+  margin: 2rem auto;
+}
+
+.product-detailspage {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.text-container-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.description-container-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.img-container-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+

@@ -45,8 +45,8 @@ const Navbar: React.FC<NavbarProps> = () => {
       <Button
             onClick={openCart}
             
-            style={{ width: "3rem", height: "3rem", position: "relative" }}
-            variant="outline-dark"
+            style={{ width: "3rem", height: "3rem", position: "relative", backgroundColor: "#000000" ,opacity: 1 }}
+            // variant="outline-dark"
             className="rounded-circle"
           >
             <svg

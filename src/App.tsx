@@ -1,10 +1,8 @@
 import './App.css';
-
 import Navbar from './components/Navbar';
 import HeroImage from './components/Hero';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-// import { product } from './data';
 
 //Pages
 import Home from './pages/Home';
@@ -21,7 +19,7 @@ function App() {
       <ShoppingCartProvider>
     <Router>
       <Navbar />
-      <HeroImage/>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/addproduct" element={<AddProductPage />} />

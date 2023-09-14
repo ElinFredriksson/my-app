@@ -5,6 +5,8 @@ import db from '../firebase';
 import ProductCard from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 import { collection, onSnapshot, QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
+import Section from '../components/Section';
+import HeroImage from '../components/Hero';
 
 
 const Home = () => {
@@ -24,6 +26,9 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <HeroImage/>
+    <Section page="Products" description="Start shopping here"/>
     <div className="App">
     <div className="product-grid">
       {products.map((product, index) => (
@@ -35,6 +40,7 @@ const Home = () => {
       ))}
     </div>
   </div>
+  </>
   )
 }
 

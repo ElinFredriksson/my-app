@@ -4,6 +4,23 @@ import db from '../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid'; // Import the uuidv4 function
 
+export const submitCart = async (cartItems: CartType[]) => {
+  try {
+    // Generate a random ID for the cart
+    const id = uuidv4();
+
+    // Create a reference to the document
+    const docRef = doc(db, 'Carts', id);
+
+    // Add data to Firestore
+    await setDoc(docRef, { cartItems });
+
+    console.log('Cart items submitted to Firestore!');
+  } catch (error) {
+    console.error('Error submitting cart:', error);
+  }
+};
+
 const AddProductPage: React.FC = () => {
   const initialProduct = {
     name: '',
@@ -49,6 +66,8 @@ const AddProductPage: React.FC = () => {
       alert('You have to enter ALL the product details!');
     }
   };
+
+
 
   return (
     <div className="container mt-5">
