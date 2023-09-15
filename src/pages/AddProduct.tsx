@@ -124,7 +124,7 @@ const AddProductPage: React.FC = () => {
           Add Product
         </button>
       </form>
-      <h2>Product List</h2>
+      <h2>New Products Added:</h2>
       <ul className="list-group mb-5">
         {products.map((product, index) => (
           <li className="list-group-item" key={index}>
